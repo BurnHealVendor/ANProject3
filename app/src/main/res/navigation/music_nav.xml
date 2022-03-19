@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_nav">
+
+    <fragment
+        android:id="@+id/classicFrag"
+        android:name="com.example.anproject3.views.ClassicFrag"
+        android:label="Characters"
+        tools:layout="@layout/fragment_classic">
+        <action
+            android:id="@+id/action_peopleFrag_to_planetFrag"
+            app:destination="@id/popFrag" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/popFrag"
+        android:name="com.example.anproject3.views.PopFrag"
+        android:label="Planets"
+        tools:layout="@layout/fragment_pop" >
+        <action
+            android:id="@+id/action_planetFrag_to_starshipsFrag"
+            app:destination="@id/rockFrag" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rockFrag"
+        android:name="com.example.anproject3.views.RockFrag"
+        android:label="Starships"
+        tools:layout="@layout/fragment_rock" />
+</navigation>

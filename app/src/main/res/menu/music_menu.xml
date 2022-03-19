@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/classicFrag"
+        android:title="classic"
+        android:icon="@drawable/ic_baseline_hourglass_empty_24" />
+
+    <item
+        android:id="@+id/popFrag"
+        android:title="pop"
+        android:icon="@drawable/ic_baseline_star_24" />
+
+    <item
+        android:id="@+id/rockFrag"
+        android:title="rock"
+        android:icon="@drawable/ic_baseline_bolt_24" />
+</menu>
