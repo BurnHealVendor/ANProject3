@@ -7,7 +7,7 @@ import com.example.anproject3.model.*
 import io.reactivex.Completable
 import io.reactivex.Single
 
-@Database(entities = [Classic::class, Pop::class, Rock::class], version = 1)
+@Database(entities = [SongItem::class], version = 1)
 abstract class ClassicDatabase : RoomDatabase() {
     abstract fun musicDAO(): MusicDAO
 
@@ -28,6 +28,7 @@ abstract class ClassicDatabase : RoomDatabase() {
     }
 }
 
+@Dao
 interface MusicDAO {
     @Insert(onConflict = REPLACE)
     fun insertClassic(): Completable
@@ -35,11 +36,11 @@ interface MusicDAO {
     @Insert(onConflict = REPLACE)
     fun insertAllClassic(): Completable
 
-    @Query("SELECT * FROM Classic ORDER BY collectionName")
-    fun getClassicByName(): Single<Classic>
+    @Query("SELECT * FROM songitem ORDER BY collectionName")
+    fun getClassicByName(): Single<SongItem>
 
-    @Query("SELECT * FROM Classic")
-    fun getAllClassic(): Single<Classic>
+    @Query("SELECT * FROM songitem")
+    fun getAllClassic(): Single<SongItem>
 
     @Delete
     fun deleteClassic(): Completable

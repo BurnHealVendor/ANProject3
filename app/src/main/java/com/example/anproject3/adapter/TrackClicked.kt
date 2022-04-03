@@ -1,7 +1,7 @@
 package com.example.anproject3.adapter
 
-import com.example.anproject3.model.Classic
+import com.example.anproject3.model.SongItem
 
 interface TrackClicked {
-    fun onTrackClicked(ClassicMusic: Classic)
+    fun onTrackClicked(ClassicMusic: SongItem)
 }

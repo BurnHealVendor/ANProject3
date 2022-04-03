@@ -7,12 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.anproject3.R
+import com.example.anproject3.MusicApp
 import com.example.anproject3.adapter.ClassicAdapter
 import com.example.anproject3.databinding.FragmentClassicBinding
-import com.example.anproject3.model.Classic
+import com.example.anproject3.model.SongItem
 import com.example.anproject3.presenters.ClassicPresenterContract
-import com.example.anproject3.presenters.ClassicPresenterImpl
 import com.example.anproject3.presenters.ClassicViewContract
 import javax.inject.Inject
 
@@ -20,6 +19,7 @@ class ClassicFrag : Fragment(), ClassicViewContract {
 
     @Inject
     lateinit var presenter: ClassicPresenterContract
+
     private var _binding: FragmentClassicBinding? = null
     private val binding: FragmentClassicBinding? get() = _binding
 
@@ -29,6 +29,7 @@ class ClassicFrag : Fragment(), ClassicViewContract {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MusicApp.musicComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -41,6 +42,8 @@ class ClassicFrag : Fragment(), ClassicViewContract {
             adapter = classicAdapter
         }
 
+        presenter.initializePres(this)
+
         presenter.checkNetworkConn()
 
         return binding?.root
@@ -51,7 +54,7 @@ class ClassicFrag : Fragment(), ClassicViewContract {
         binding?.progBar?.visibility = View.VISIBLE
     }
 
-    override fun classicSuccess(music: List<Classic>) {
+    override fun classicSuccess(music: List<SongItem>) {
         binding?.progBar?.visibility = View.GONE
         binding?.recView?.visibility = View.VISIBLE
         classicAdapter.updateClassic(music)

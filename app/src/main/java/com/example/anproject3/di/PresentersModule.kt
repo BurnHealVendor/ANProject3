@@ -18,10 +18,10 @@ class PresentersModule {
     @Provides
     fun providesClassicPresenter(
         context: Context?,
-        classicViewContract: ClassicViewContract?,
         disposables: CompositeDisposable,
-        networkUtils: NetworkUtils
+        networkUtils: NetworkUtils,
+        musicRepo: MusicRepo
     ): ClassicPresenterContract {
-        return ClassicPresenterImpl(context, classicViewContract, disposables, networkUtils)
+        return ClassicPresenterImpl(context, disposables, networkUtils, musicRepo)
     }
 }
