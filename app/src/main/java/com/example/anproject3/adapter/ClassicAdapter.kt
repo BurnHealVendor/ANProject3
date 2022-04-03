@@ -7,17 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anproject3.R
-import com.example.anproject3.model.ClassicMusic
-import com.example.anproject3.model.Classic
+import com.example.anproject3.model.SongItem
 import com.example.anproject3.rest.MusicAPI
 import com.squareup.picasso.Picasso
 
 class ClassicAdapter(
-    private val onTrackClicked: (Classic) -> Unit,
-    private val classicList: MutableList<Classic> = mutableListOf()
+    private val onTrackClicked: (SongItem) -> Unit,
+    private val classicList: MutableList<SongItem> = mutableListOf()
 ) : RecyclerView.Adapter<ClassicViewHolder>() {
 
-    fun updateClassic(newClassic: List<Classic>) {
+    fun updateClassic(newClassic: List<SongItem>) {
         classicList.clear()
         classicList.addAll(newClassic)
         notifyDataSetChanged()
@@ -36,13 +35,13 @@ class ClassicAdapter(
     override fun getItemCount(): Int = classicList.size
 }
 
-class ClassicViewHolder(itemView: View, val onTrackClicked: (Classic) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class ClassicViewHolder(itemView: View, val onTrackClicked: (SongItem) -> Unit) : RecyclerView.ViewHolder(itemView) {
     val artistName: TextView = itemView.findViewById(R.id.artistName)
     val collectionName: TextView = itemView.findViewById(R.id.collectionName)
     val trackPhoto: ImageView = itemView.findViewById(R.id.trackPhoto)
     val trackPrice: TextView = itemView.findViewById(R.id.trackPrice)
 
-    fun bind(classic: Classic) {
+    fun bind(classic: SongItem) {
         artistName.text = classic.artistName
         collectionName.text = classic.collectionName
         trackPrice.text = classic.trackPrice.toString()

@@ -6,9 +6,10 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 
-class NetworkUtils(
-    private var context: Context? = null,
+class NetworkUtils @Inject constructor(
+    private var context: Context?,
     private val connectivityManager: ConnectivityManager? =
         context?.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager,
     private val networkRequest: NetworkRequest = NetworkRequest.Builder()

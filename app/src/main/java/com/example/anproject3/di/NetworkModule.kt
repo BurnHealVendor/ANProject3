@@ -1,5 +1,6 @@
 package com.example.anproject3.di
 
+import android.content.Context
 import com.example.anproject3.rest.*
 import com.google.gson.Gson
 import dagger.Module
@@ -55,4 +56,8 @@ class NetworkModule {
     fun providesStarWarsRepo(musicAPI: MusicAPI): MusicRepo {
         return MusicRepoImpl(musicAPI)
     }
+
+    @Provides
+    fun providesNetworkUtils(context: Context): NetworkUtils =
+        NetworkUtils(context)
 }

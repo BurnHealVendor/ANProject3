@@ -1,19 +1,18 @@
 package com.example.anproject3.rest
 
-import com.example.anproject3.model.Classic
-import com.example.anproject3.model.ClassicMusic
+import com.example.anproject3.model.Songs
 import io.reactivex.Single
 import javax.inject.Inject
 
 interface MusicRepo {
-    fun getClassic(): Single<ClassicMusic>
+    fun getSongsByGenre(genre: String): Single<Songs>
 }
 
 class MusicRepoImpl @Inject constructor(
     private val musicAPI: MusicAPI
 ) : MusicRepo {
 
-    override fun getClassic(): Single<ClassicMusic> {
-        return musicAPI.getClassicMusic()
+    override fun getSongsByGenre(genre: String): Single<Songs> {
+        return musicAPI.getSongs(genre)
     }
 }

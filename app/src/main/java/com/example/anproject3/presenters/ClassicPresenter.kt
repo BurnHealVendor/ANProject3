@@ -1,11 +1,8 @@
 package com.example.anproject3.presenters
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import com.example.anproject3.model.Classic
+import com.example.anproject3.model.SongItem
 import com.example.anproject3.rest.MusicRepo
-import com.example.anproject3.rest.MusicService
 import com.example.anproject3.rest.NetworkUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,9 +11,10 @@ import javax.inject.Inject
 
 class ClassicPresenterImpl @Inject constructor(
     private var context: Context?,
-    private var classicViewContract: ClassicViewContract?,
     private val disposables: CompositeDisposable,
-    private val networkUtils: NetworkUtils
+    private val networkUtils: NetworkUtils,
+    private val musicRepo: MusicRepo,
+    private var classicViewContract: ClassicViewContract? = null
 ) : ClassicPresenterContract {
 
     override fun initializePres(viewContract: ClassicViewContract) {
@@ -30,7 +28,7 @@ class ClassicPresenterImpl @Inject constructor(
     override fun getClassic() {
         classicViewContract?.loadingClassic(true)
 
-        MusicService.retrofitService.getClassicMusic()
+        musicRepo.getSongsByGenre("classic")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -59,6 +57,6 @@ interface ClassicPresenterContract {
 
 interface ClassicViewContract {
     fun loadingClassic(isLoading: Boolean)
-    fun classicSuccess(music: List<Classic>)
+    fun classicSuccess(music: List<SongItem>)
     fun classicError(error: Throwable)
 }
